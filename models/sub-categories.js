@@ -2,7 +2,7 @@
 const sequelizePaginate = require('sequelize-paginate')
 
 module.exports = (sequelize, DataTypes) => {
-  const categories = sequelize.define(
+  const sub_categories = sequelize.define(
     'sub_categories',
     {
       category: DataTypes.STRING,

@@ -78,8 +78,7 @@ exports.register = async (req, res) => {
         });
         return;
     }
-    console.log('User:', Users);
-    console.log('findAll:', Users?.findAll);
+    
     let users = await Users.findAll();
 
     var dateNow = Date.now();
