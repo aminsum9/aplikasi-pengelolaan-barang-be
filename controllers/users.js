@@ -300,7 +300,7 @@ exports.checkLogin = (req, res) => {
         .catch((error) => {
             res.status(500).json({
                 success: false,
-                message: 'Terjadi kesalahan, mohon ulangi lagi nanti.'
+                message: 'Terjadi kesalahan, mohon ulangi lagi nanti: ' + error?.message
             });
         });
 };
