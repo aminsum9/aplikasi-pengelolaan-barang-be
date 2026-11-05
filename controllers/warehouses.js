@@ -7,10 +7,20 @@ const Product = models.products;
 
 //Add
 exports.addWarehouse = async (req, res) => {
-    let bodyOperator, bodyCategory, bodySubCategory, bodyPriceLimit, bodyOrigin, bodyNumber, bodyAttachment;
-    const { operator, category, sub_category, price_limit, origin, number, attachment } = req.body;
+    const transaction = await models.sequelize.transaction();
 
-    if (!operator || !category || !sub_category || !price_limit || !origin || !number || !attachment) {
+    let bodyOperator, bodyCategory, bodySubCategory, bodyPriceLimit, bodyOrigin, bodyNumber, bodyAttachment, bodyProducts;
+    const { operator, category, sub_category, price_limit, origin, number, attachment, products } = req.body;
+
+    if(!products || typeof products != "object"){
+        res.status(500).json({
+            success: false,
+            message: 'data yang dimasukkan tidak lengkap.'
+        });
+        return;
+    }
+
+    if (!operator || !category || !sub_category || !price_limit || !origin || !number || !attachment || products.length < 1) {
         res.status(500).json({
             success: false,
             message: 'data yang dimasukkan tidak lengkap.'
@@ -43,23 +53,41 @@ exports.addWarehouse = async (req, res) => {
                         origin: bodyOrigin,
                         number: bodyNumber,
                         attachment: bodyAttachment
-                    }).then((data) => {
+                    },{transaction}).then(async (data) => {
                         if (data) {
-                            res.status(200).json({
-                                success: true,
-                                message: 'success',
-                                data: {
-                                    id: data.id,
-                                    operator: data.operator,
-                                    category: data.category,
-                                    sub_category: data.sub_category,
-                                    price_limit: data.price_limit,
-                                    origin: data.origin,
-                                    number: data.number,
-                                    attachment: data.attachment
-                                },
-                            });
+                            try {
+                                const productsData = await Product.bulkCreate(products, {
+                                    validate: true,
+                                    transaction
+                                })
+
+                                await transaction.commit();
+
+                                res.status(200).json({
+                                    success: true,
+                                    message: 'success',
+                                    data: {
+                                        id: data.id,
+                                        operator: data.operator,
+                                        category: data.category,
+                                        sub_category: data.sub_category,
+                                        price_limit: data.price_limit,
+                                        origin: data.origin,
+                                        number: data.number,
+                                        attachment: data.attachment
+                                    },
+                                    total_products: productsData.length
+                                });
+                            } catch (error) {
+                                await transaction.rollback();
+                                res.status(400).json({
+                                    success: false,
+                                    message: 'add product failed: ' + error?.message
+                                });
+                            }
+
                         } else {
+                            await transaction.rollback();
                             res.status(400).json({
                                 success: false,
                                 message: 'add product failed'
@@ -70,7 +98,7 @@ exports.addWarehouse = async (req, res) => {
                 .catch((error) => {
                     res.status(500).json({
                         success: false,
-                        message: 'add product failed:' + error
+                        message: 'add product failed:' + error?.message
                     });
                 });
         }
@@ -94,7 +122,7 @@ exports.getAllWarehouse = async (req, res) => {
 
     res.send({
         success: true,
-        message: 'Berhasil mengambil data kategori.',
+        message: 'Berhasil mengambil data barang masuk.',
         data: docs,
         last_page: pages,
         total_data: total
