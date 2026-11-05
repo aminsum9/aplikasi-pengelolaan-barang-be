@@ -52,7 +52,7 @@ routerUser.post('/register', controllerUser.register);
 routerUser.post('/check-login', controllerUser.checkLogin);
 routerUser.get('/get-all', authenticated, controllerUser.getAll);
 routerUser.put('/update', authenticated, controllerUser.updateUser);
-routerUser.delete('/delete', authenticated, controllerUser.deleteUser);
+routerUser.delete('/delete/:id', authenticated, controllerUser.deleteUser);
 
 const routerCategory = express.Router();
 

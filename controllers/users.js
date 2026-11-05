@@ -306,14 +306,14 @@ exports.checkLogin = (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-    Users.findOne({ where: { id: req.body.id } }).then(ress => {
+    Users.findOne({ where: { id: req.params.id } }).then(ress => {
         if (!ress) {
             res.send({
                 success: false,
                 message: 'User tidak ditemukan.',
             });
         } else {
-            Users.destroy({ where: { id: req.body.id } }).then(ress => {
+            Users.destroy({ where: { id: req.params.id } }).then(ress => {
                 if (ress) {
                     res.send({
                         success: true,
