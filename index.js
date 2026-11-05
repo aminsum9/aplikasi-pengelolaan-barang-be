@@ -59,7 +59,7 @@ const routerCategory = express.Router();
 routerCategory.post('/add',authenticated, controllerCategory.addCategory);
 routerCategory.get('/get-all', authenticated, controllerCategory.getAllCategory);
 routerCategory.put('/update', authenticated, controllerCategory.updateCategory);
-routerCategory.delete('/delete', authenticated, controllerCategory.deleteCategory);
+routerCategory.delete('/delete/:id', authenticated, controllerCategory.deleteCategory);
 
 const routerSubCategory = express.Router();
 

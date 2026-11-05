@@ -158,14 +158,14 @@ exports.updateCategory = async (req, res) => {
 };
 
 exports.deleteCategory = async (req, res) => {
-    Category.findOne({ where: { id: req.body.id } }).then(ress => {
+    Category.findOne({ where: { id: req.params.id } }).then(ress => {
         if (!ress) {
             res.send({
                 success: false,
                 message: 'Kategori tidak ditemukan.',
             });
         } else {
-            Category.destroy({ where: { id: req.body.id } }).then(ress => {
+            Category.destroy({ where: { id: req.params.id } }).then(ress => {
                 if (ress) {
                     res.send({
                         success: true,
