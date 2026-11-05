@@ -6,7 +6,7 @@ const Category = models.categories;
 
 //Add
 exports.addCategory = async (req, res) => {
-    let bodyName, bodycode;
+    let bodyName, bodyCode;
     const { name, code } = req.body;
 
     if (!name || !code) {

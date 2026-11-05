@@ -8,6 +8,7 @@ require('express-group-routes');
 //import controllers
 const controllerUser = require("./controllers/users");
 const controllerCategory = require("./controllers/categories");
+const controllerSubCategory = require("./controllers/sub-categories");
 
 const { authenticated } = require('./middleware');
 
@@ -51,15 +52,23 @@ routerUser.delete('/delete', authenticated, controllerUser.deleteUser);
 
 const routerCategory = express.Router();
 
-routerCategory.post('/add', controllerCategory.addCategory);
+routerCategory.post('/add',authenticated, controllerCategory.addCategory);
 routerCategory.get('/get-all', authenticated, controllerCategory.getAllCategory);
 routerCategory.put('/update', authenticated, controllerCategory.updateCategory);
 routerCategory.delete('/delete', authenticated, controllerCategory.deleteCategory);
+
+const routerSubCategory = express.Router();
+
+routerSubCategory.post('/add',authenticated, controllerSubCategory.addSubCategory);
+routerSubCategory.get('/get-all', authenticated, controllerSubCategory.getAllSubCategory);
+routerSubCategory.put('/update', authenticated, controllerSubCategory.updateSubCategory);
+routerSubCategory.delete('/delete', authenticated, controllerSubCategory.deleteSubCategory);
 
 
 //REST API
 app.use('/api/user', routerUser);
 app.use('/api/category', routerCategory);
+app.use('/api/sub-category', routerSubCategory);
 
 app.listen(process.env.PORT || 5000, () => {
 	console.log(`listen on port ${port}!`)
