@@ -61,7 +61,7 @@ exports.login = (req, res) => {
         .catch((error) => {
             res.status(500).json({
                 success: false,
-                message: 'Terjadi kesalahan, anda gagal melakukan login.'
+                message: 'Terjadi kesalahan, anda gagal melakukan login: '+error?.message
             });
         });
 };

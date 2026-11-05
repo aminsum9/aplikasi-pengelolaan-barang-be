@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
@@ -14,6 +15,8 @@ const controllerWarehouse = require("./controllers/warehouses");
 const { authenticated } = require('./middleware');
 
 const app = express();
+
+app.use(cors())
 
 const port = process.env.PORT || 5000;
 
