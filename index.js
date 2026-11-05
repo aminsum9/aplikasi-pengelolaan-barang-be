@@ -9,6 +9,7 @@ require('express-group-routes');
 const controllerUser = require("./controllers/users");
 const controllerCategory = require("./controllers/categories");
 const controllerSubCategory = require("./controllers/sub-categories");
+const controllerWarehouse = require("./controllers/warehouses");
 
 const { authenticated } = require('./middleware');
 
@@ -64,11 +65,19 @@ routerSubCategory.get('/get-all', authenticated, controllerSubCategory.getAllSub
 routerSubCategory.put('/update', authenticated, controllerSubCategory.updateSubCategory);
 routerSubCategory.delete('/delete', authenticated, controllerSubCategory.deleteSubCategory);
 
+const routerWarehouse = express.Router();
+
+routerWarehouse.post('/add',authenticated, controllerWarehouse.addWarehouse);
+routerWarehouse.get('/get-all', authenticated, controllerWarehouse.getAllWarehouse);
+routerWarehouse.put('/update', authenticated, controllerWarehouse.updateWarehouse);
+routerWarehouse.delete('/delete', authenticated, controllerWarehouse.deleteWarehouse);
+
 
 //REST API
 app.use('/api/user', routerUser);
 app.use('/api/category', routerCategory);
 app.use('/api/sub-category', routerSubCategory);
+app.use('/api/warehouse', routerWarehouse);
 
 app.listen(process.env.PORT || 5000, () => {
 	console.log(`listen on port ${port}!`)
