@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "user1",
+    "password": "",
+    "database": "aplikasi_pesan_barang",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": 0
+  },
+  "test": {
+    "username": "user1",
+    "password": "",
+    "database": "aplikasi_pesan_barang",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": 0
+  },
+  "production": {
+    "username": "user1",
+    "password": "",
+    "database": "aplikasi_pesan_barang",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": 0
+  }
+}
