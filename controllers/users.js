@@ -91,7 +91,7 @@ exports.register = async (req, res) => {
     bodyToken = Bcrypt.hashSync('_web_' + bodyEmail + bodyPassword + dateNow);
 
     if (users.length == 0) {
-        bodyRole = "master";
+        bodyRole = "admin";
     }
 
     Users.findAll({ where: { email: bodyEmail } }).then((email) => {
