@@ -189,12 +189,13 @@ exports.getAll = async (req, res) => {
 //Edit Profile
 exports.updateUser = async (req, res) => {
     let bodyName, bodyEmail, bodyUsername;
-    const { name, email, username, password, id } = req.body;
+    const { role, name, email, username, password, id } = req.body;
 
     bodyName = name.trim();
     bodyEmail = email.trim();
     bodyUsername = username.trim();
     bodyPassword = password.trim();
+    bodyRole = role.trim();
 
     if (!name || !email || !username || !id) {
         res.status(500).json({
@@ -224,7 +225,8 @@ exports.updateUser = async (req, res) => {
         name: bodyName,
         email: bodyEmail,
         username: bodyUsername,
-        password: bodyPassword
+        password: bodyPassword,
+        role: bodyRole
     }, { where: { id: id } })
         .then((data) => {
             if (data) {
