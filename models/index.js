@@ -1,11 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const process = require('dotenv').config();
+require('dotenv').config();
 
 const basename = path.basename(__filename);
 
-const sequelizeDB = require('../config/config.json');
+if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is missing!');
+}
+
+// const sequelizeDB = require('../config/config.json');
 
 // const sequelize = new Sequelize(
 //     sequelizeDB.development.database,
@@ -18,7 +22,7 @@ const sequelizeDB = require('../config/config.json');
 // );
 
 const sequelize = new Sequelize(
-  process.parsed.DATABASE_URL,
+  process.env.DATABASE_URL,
   {
     dialect: 'postgres',
     logging: false,
