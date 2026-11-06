@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const models = require('../models');
 const bcrypt = require('bcryptjs');
-const process = require('dotenv').config();
+require('dotenv').config();
 Bcrypt = require('bcryptjs');
 
 //import models
@@ -27,7 +27,7 @@ exports.login = (req, res) => {
         .then((data) => {
             if (data) {
                 if (Bcrypt.compareSync(password, data.password)) {
-                    const token = jwt.sign({ id: data.id }, process.parsed.BEARER_TOKER);
+                    const token = jwt.sign({ id: data.id }, process.env.BEARER_TOKER);
                     res.send({
                         success: true,
                         message: 'success',
@@ -126,7 +126,7 @@ exports.register = async (req, res) => {
                                         token: bodyToken
                                     }).then((data) => {
                                         if (data) {
-                                            const token = jwt.sign({ id: data.id }, process.parsed.BEARER_TOKER);
+                                            const token = jwt.sign({ id: data.id }, process.env.BEARER_TOKER);
                                             res.status(200).json({
                                                 success: true,
                                                 message: 'success',
@@ -282,7 +282,7 @@ exports.checkLogin = (req, res) => {
         }
     })
         .then((data) => {
-            const token = jwt.sign({ id: data.id }, process.parsed.BEARER_TOKER);
+            const token = jwt.sign({ id: data.id }, process.env.BEARER_TOKER);
             if (data) {
                 res.send({
                     success: true,

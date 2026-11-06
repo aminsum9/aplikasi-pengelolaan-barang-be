@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const process = require('dotenv').config();
+require('dotenv').config();
 
 exports.authenticated = (req, res, next) => {
 	let authHeader = req.headers['authorization'];
@@ -11,7 +11,7 @@ exports.authenticated = (req, res, next) => {
 	}
 	let token = authHeader.split('Bearer ')[1];
 
-	jwt.verify(token, process.parsed.BEARER_TOKER, (err, decoded) => {
+	jwt.verify(token, process.env.BEARER_TOKER, (err, decoded) => {
 		if (err) {
 			return res.status(403).send({ message: 'Your Token is Longer Valid' });
 		}
