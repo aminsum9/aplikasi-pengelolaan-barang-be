@@ -82,8 +82,13 @@ app.use('/api/category', routerCategory);
 app.use('/api/sub-category', routerSubCategory);
 app.use('/api/warehouse', routerWarehouse);
 
-app.listen(process.env.PORT || 5000, () => {
-	console.log(`listen on port ${port}!`)
-});
+if (require.main === module) {
+	app.listen(process.env.PORT || 5000, () => {
+		console.log(`listen on port ${port}!`)
+	});
+}
+
+module.exports = app;
+
 
 //server harus update db:migrate setelah aplikasi diupdate kembali
