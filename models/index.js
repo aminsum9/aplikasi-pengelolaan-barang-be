@@ -9,6 +9,10 @@ if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL is missing!');
 }
 
+console.log('PG PATH:', require.resolve('pg'));
+console.log('PG VERSION:', require('pg/package.json').version);
+console.log('DATABASE URL EXISTS:', !!process.env.DATABASE_URL);
+
 // const sequelizeDB = require('../config/config.json');
 
 // const sequelize = new Sequelize(
