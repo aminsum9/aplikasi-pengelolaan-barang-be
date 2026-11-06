@@ -1,7 +1,7 @@
 1. Tech Stack Yang Digunakan
   - Express.js
   - PostgREST version 14.18
-2. Petunjuk Instalasi local
+2. Petunjuk Instalasi Aplikasi BE local
   - gunakan atau download Node.js v20.11.1
   - gunakan atau pasang PostgREST version 14.18
   - clone project BE: git clone https://github.com/aminsum9/aplikasi-pengelolaan-barang-be.git
