@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 require('express-group-routes');
+const { authenticated } = require('./authMiddleware');
 
 
 //import controllers
@@ -11,8 +12,6 @@ const controllerUser = require("./controllers/users");
 const controllerCategory = require("./controllers/categories");
 const controllerSubCategory = require("./controllers/sub-categories");
 const controllerWarehouse = require("./controllers/warehouses");
-
-const { authenticated } = require('./middleware');
 
 const app = express();
 
