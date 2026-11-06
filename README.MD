@@ -1,7 +1,8 @@
-1. Tech Stack Yang Digunakan
+1. Endpoint aplikasi BE: https://aplikasi-pengelolaan-barang-be-remo.vercel.app/
+2. Tech Stack Yang Digunakan
   - Express.js
   - PostgREST version 14.18
-2. Petunjuk Instalasi Aplikasi BE local
+3. Petunjuk Instalasi Aplikasi BE local
   - gunakan atau download Node.js v20.11.1
   - gunakan atau pasang PostgREST version 14.18
   - clone project BE: git clone https://github.com/aminsum9/aplikasi-pengelolaan-barang-be.git
@@ -13,7 +14,7 @@
 
   - untuk melakukan migrasi database jalankan: npx sequelize db:migrate
   - untuk menjalankan server jalankan: nodemon
-3. Akun yang bisa dicoba:
+4. Akun yang bisa dicoba:
   - jika di server remote: 
     - username: admin
     - password: password123
