@@ -12,6 +12,7 @@ const controllerUser = require("./controllers/users");
 const controllerCategory = require("./controllers/categories");
 const controllerSubCategory = require("./controllers/sub-categories");
 const controllerWarehouse = require("./controllers/warehouses");
+const controllerProduct = require("./controllers/products");
 
 const app = express();
 
@@ -74,12 +75,17 @@ routerWarehouse.get('/get-all', authenticated, controllerWarehouse.getAllWarehou
 routerWarehouse.put('/update', authenticated, controllerWarehouse.updateWarehouse);
 routerWarehouse.delete('/delete', authenticated, controllerWarehouse.deleteWarehouse);
 
+const routerProduct = express.Router();
+
+routerProduct.get('/get-all', authenticated, controllerProduct.getAllProducts);
+
 
 //REST API
 app.use('/api/user', routerUser);
 app.use('/api/category', routerCategory);
 app.use('/api/sub-category', routerSubCategory);
 app.use('/api/warehouse', routerWarehouse);
+app.use('/api/product', routerProduct);
 
 if (require.main === module) {
 	app.listen(process.env.PORT || 5000, () => {

@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   products.associate = function (models) {
     // associations can be defined here
+    products.belongsTo(models.warehouses, {
+      foreignKey: 'warehouse_number',
+      targetKey: 'number',
+      as: 'warehouse',
+    });
   };
 
   sequelizePaginate.paginate(products);

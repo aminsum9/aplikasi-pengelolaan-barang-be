@@ -1,4 +1,6 @@
 'use strict';
+// const Product = require('./products');
+
 const sequelizePaginate = require('sequelize-paginate')
 
 module.exports = (sequelize, DataTypes) => {
@@ -16,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   warehouses.associate = function (models) {
+    warehouses.hasMany(models.products, {
+      foreignKey: 'warehouse_number',
+      sourceKey: 'number',
+      as: 'products',
+    });
+
     // associations can be defined here
   };
 
