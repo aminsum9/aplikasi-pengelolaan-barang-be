@@ -85,6 +85,16 @@ exports.getAllCategory = async (req, res) => {
     });
 };
 
+exports.getAllCategoryNoLimit = async (req, res) => {
+    const data = await Category.findAll()
+
+    res.send({
+        success: true,
+        message: 'Berhasil mengambil data kategori.',
+        data: data
+    });
+};
+
 //Edit 
 exports.updateCategory = async (req, res) => {
     let bodyName, bodyCode;

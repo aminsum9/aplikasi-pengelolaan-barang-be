@@ -88,6 +88,19 @@ exports.getAllSubCategory = async (req, res) => {
     });
 };
 
+exports.getAllSubCategoryNoLimit = async (req, res) => {
+    let { category } = req.query;
+    const queryCategory = category || ''
+
+    const data = await SubCategory.findAll({where: {category: queryCategory}})
+
+    res.send({
+        success: true,
+        message: 'Berhasil mengambil data sub kategori.',
+        data: data
+    });
+};
+
 //Edit 
 exports.updateSubCategory = async (req, res) => {
     let bodyName, bodyCategory, bodyPriceLimit;

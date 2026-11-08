@@ -58,6 +58,7 @@ const routerCategory = express.Router();
 
 routerCategory.post('/add',authenticated, controllerCategory.addCategory);
 routerCategory.get('/get-all', authenticated, controllerCategory.getAllCategory);
+routerCategory.get('/get-all-no-limit', authenticated, controllerCategory.getAllCategoryNoLimit);
 routerCategory.put('/update', authenticated, controllerCategory.updateCategory);
 routerCategory.delete('/delete/:id', authenticated, controllerCategory.deleteCategory);
 
@@ -65,6 +66,7 @@ const routerSubCategory = express.Router();
 
 routerSubCategory.post('/add',authenticated, controllerSubCategory.addSubCategory);
 routerSubCategory.get('/get-all', authenticated, controllerSubCategory.getAllSubCategory);
+routerSubCategory.get('/get-all-no-limit', authenticated, controllerSubCategory.getAllSubCategoryNoLimit);
 routerSubCategory.put('/update', authenticated, controllerSubCategory.updateSubCategory);
 routerSubCategory.delete('/delete', authenticated, controllerSubCategory.deleteSubCategory);
 
