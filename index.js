@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 const storage = multer.diskStorage({
 	destination(req, file, callback) {
 		// callback(null, '../images');
-		callback(null, path.join(__dirname, '/images/'));
+		callback(null, path.join(__dirname, '/attachments/'));
 	},
 	filename(req, file, callback) {
 		authenticated(req, {}, (ress) => {
@@ -72,7 +72,7 @@ routerSubCategory.delete('/delete', authenticated, controllerSubCategory.deleteS
 
 const routerWarehouse = express.Router();
 
-routerWarehouse.post('/add',authenticated, controllerWarehouse.addWarehouse);
+routerWarehouse.post('/add',authUpload.single('attachment'), controllerWarehouse.addWarehouse);
 routerWarehouse.get('/get-all', authenticated, controllerWarehouse.getAllWarehouse);
 routerWarehouse.put('/update', authenticated, controllerWarehouse.updateWarehouse);
 routerWarehouse.delete('/delete', authenticated, controllerWarehouse.deleteWarehouse);

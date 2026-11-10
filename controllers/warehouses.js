@@ -10,7 +10,8 @@ exports.addWarehouse = async (req, res) => {
     const transaction = await models.sequelize.transaction();
 
     let bodyOperator, bodyCategory, bodySubCategory, bodyPriceLimit, bodyOrigin, bodyNumber, bodyAttachment, bodyProducts;
-    const { operator, category, sub_category, price_limit, origin, number, attachment, products } = req.body;
+    const { operator, category, sub_category, price_limit, origin, number, products } = req.body;
+    const attachment = req?.file?.filename || ""
 
     if(!products || typeof products != "object"){
         res.status(500).json({
