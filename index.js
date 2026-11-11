@@ -80,6 +80,7 @@ routerWarehouse.delete('/delete', authenticated, controllerWarehouse.deleteWareh
 const routerProduct = express.Router();
 
 routerProduct.get('/get-all', authenticated, controllerProduct.getAllProducts);
+routerProduct.get('/by-id/:id', authenticated, controllerProduct.getById);
 
 
 //REST API

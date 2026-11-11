@@ -4,6 +4,26 @@ const models = require('../models');
 const Warehouse = models.warehouses;
 const Product = models.products;
 
+exports.getById = async (req, res) => {
+    let { id } = req.params;
+
+    const data = await Product.findOne({
+        where: { id: id },
+        include: [
+            {
+                model: Warehouse,
+                as: 'warehouse',
+            },
+        ],
+    })
+
+    res.send({
+        success: true,
+        message: 'Berhasil mengambil data barang masuk.',
+        data: data
+    });
+};
+
 exports.getAllProducts = async (req, res) => {
     let { page } = req.query;
     let bodyPage = page || 1;
